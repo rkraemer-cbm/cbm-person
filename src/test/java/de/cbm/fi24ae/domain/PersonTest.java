@@ -19,7 +19,7 @@ class PersonTest {
     }
 
     @Test
-    public void anIdCanBotSetTwice() {
+    public void anIdCanNotSetTwice() {
         Person person = new Person("Meyer", "Uschi");
         person.setId(5);
         assertThrows(IllegalArgumentException.class, () -> person.setId(5));
