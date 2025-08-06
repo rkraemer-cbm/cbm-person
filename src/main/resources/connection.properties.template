@@ -1,5 +1,0 @@
-jdbcUrl=
-username=
-password=
-maximumPoolSize=10
-connectionTimeout=30000
