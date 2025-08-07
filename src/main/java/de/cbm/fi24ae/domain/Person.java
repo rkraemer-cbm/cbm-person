@@ -1,7 +1,10 @@
 package de.cbm.fi24ae.domain;
 
+import lombok.Getter;
+
 import java.util.Objects;
 
+@Getter
 public class Person {
 
     private int id;
@@ -14,10 +17,6 @@ public class Person {
         this.setLastName(lastName);
     }
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         if (this.id > 0) {
             throw new IllegalArgumentException();
@@ -25,17 +24,9 @@ public class Person {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
     public void setFirstName(String firstName) {
         this.checkNames(firstName);
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public void setLastName(String lastName) {
@@ -54,6 +45,7 @@ public class Person {
             throw new IllegalArgumentException("Name '" + name + "' ist zu lang (maximal 15 Zeichen erlaubt).");
         }
     }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
