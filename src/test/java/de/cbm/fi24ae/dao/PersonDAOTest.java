@@ -1,7 +1,7 @@
 package de.cbm.fi24ae.dao;
 
 import de.cbm.fi24ae.domain.Person;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,38 +10,38 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PersonDAOTest {
 
-   @Test
+    private PersonDAO personDAO;
+
+    @BeforeEach
+    void setup() {
+        personDAO = new PersonDAO();
+        personDAO.getAll().forEach(personDAO::deletePerson);
+    }
+
+    @Test
     public void aPersonCanBeCreated() {
-
         Person person = new Person("Müller-Schmidt", "Angela");
-
-        PersonDAO personDAO = new PersonDAO();
         personDAO.createPerson(person);
-
         assertTrue(person.getId() > 0);
-
     }
 
     @Test
     public void getPersonById() {
 
-       PersonDAO personDAO = new PersonDAO();
        Person person = new Person("Müller-Schmidt", "Angela");
-
        personDAO.createPerson(person);
 
        Person loadedPerson = personDAO.getPersonById(person.getId());
 
        assertNotNull(loadedPerson);
        assertEquals(person.getId(),loadedPerson.getId());
-       assertTrue(person.equals(loadedPerson));
+       assertEquals(person, loadedPerson);
 
     }
 
     @Test
     public void deletePerson() {
 
-        PersonDAO personDAO = new PersonDAO();
         Person person = new Person("Müller-Schmidt", "Angela");
 
         personDAO.createPerson(person);
@@ -64,17 +64,9 @@ class PersonDAOTest {
 
        List<Person> personen = personDAO.getAll();
 
-       assertNotNull(personen.size() >= maxPerson);
+       assertNotNull(personen);
+       assertEquals(maxPerson,personen.size());
 
-    }
-
-   @AfterAll
-    public static void tearDownAll() {
-       PersonDAO personDAO = new PersonDAO();
-       List<Person> personen = personDAO.getAll();
-       for(Person person : personen) {
-           personDAO.deletePerson(person);
-       }
     }
 
 }
