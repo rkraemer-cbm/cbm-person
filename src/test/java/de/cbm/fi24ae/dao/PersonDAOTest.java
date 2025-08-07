@@ -19,14 +19,14 @@ class PersonDAOTest {
     }
 
     @Test
-    public void aPersonCanBeCreated() {
+    void aPersonCanBeCreated() {
         Person person = new Person("Müller-Schmidt", "Angela");
         personDAO.createPerson(person);
         assertTrue(person.getId() > 0);
     }
 
     @Test
-    public void getPersonById() {
+    void getPersonById() {
 
        Person person = new Person("Müller-Schmidt", "Angela");
        personDAO.createPerson(person);
@@ -40,7 +40,7 @@ class PersonDAOTest {
     }
 
     @Test
-    public void deletePerson() {
+    void deletePerson() {
 
         Person person = new Person("Müller-Schmidt", "Angela");
 
@@ -53,7 +53,7 @@ class PersonDAOTest {
     }
 
     @Test
-    public void getAllPersons() {
+    void getAllPersons() {
 
        int maxPerson = 100;
        PersonDAO personDAO = new PersonDAO();
