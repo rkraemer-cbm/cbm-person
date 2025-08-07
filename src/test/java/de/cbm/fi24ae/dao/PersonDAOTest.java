@@ -26,6 +26,22 @@ class PersonDAOTest {
     }
 
     @Test
+    void updatePerson() {
+
+        Person person = new Person("Müller-Schmidt", "Angela");
+        personDAO.createPerson(person);
+
+        person.setFirstName("Neuer Name");
+        person.setLastName("Neue Nachmname");
+
+        personDAO.updatePerson(person);
+
+        Person loadedPerson = personDAO.getPersonById(person.getId());
+        assertEquals(loadedPerson, person);
+
+    }
+
+    @Test
     void getPersonById() {
 
        Person person = new Person("Müller-Schmidt", "Angela");
